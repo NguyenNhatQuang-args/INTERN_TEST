@@ -26,17 +26,17 @@ npm run dev
 git init
 git add .
 
-# Nếu muốn đổi branch hiện tại thành main
+# Đổi branch hiện tại thành main
 git branch -M main
 
 git commit -m "Frist push"
 
 git remote add origin https://github.com/NguyenNhatQuang-args/INTERN_TEST.git
-# Push lên GitHub nếu là lần đầu tiên
+# Push lên GitHub lần đầu tiên
 git push -u origin main
 
-# Còn sau khi update code
-# Xem code nào đã thay đổi
+# update code
+# Xem code đã thay đổi
 git status 
 
 git add .
