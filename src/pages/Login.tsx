@@ -63,7 +63,7 @@ const Login: React.FC = () => {
               style={{ marginBottom: '20px' }}
             >
               <Input 
-                prefix={<UserOutlined style={{ color: 'rgba(255,255,255,0.5)' }} />} 
+                prefix={<UserOutlined style={{ color: 'rgba(0,0,0,0.5)' }} />} 
                 placeholder="Email"
                 className="login-input"
               />
@@ -79,7 +79,7 @@ const Login: React.FC = () => {
               style={{ marginBottom: '15px' }}
             >
               <Input.Password 
-                prefix={<LockOutlined style={{ color: 'rgba(255,255,255,0.5)' }} />} 
+                prefix={<LockOutlined style={{ color: 'rgba(0,0,0,0.5)' }} />} 
                 placeholder="Password"
                 className="login-input"
               />
@@ -355,20 +355,36 @@ const Login: React.FC = () => {
         /* INPUT STYLES */
         .ant-input::placeholder,
         .ant-input-password input::placeholder {
-          color: rgba(255, 255, 255, 0.5) !important;
+          color: rgba(0, 0, 0, 0.4) !important;
         }
         .ant-input,
-        .ant-input-password .ant-input {
-          background: rgba(255, 255, 255, 0.1) !important;
-          color: white !important;
+        .ant-input-affix-wrapper,
+        .ant-input-password .ant-input,
+        .ant-input-affix-wrapper .ant-input {
+          background: rgba(255, 255, 255, 0.9) !important;
+          background-color: rgba(255, 255, 255, 0.9) !important;
+          color: #000000 !important;
           height: 45px;
           border-radius: 8px;
+          border: 1px solid rgba(200, 200, 200, 0.5) !important;
+          box-sizing: border-box !important;
+        }
+        .ant-input-affix-wrapper {
+          padding: 0 11px !important;
+          height: 45px !important;
+          line-height: 43px !important;
+        }
+        .ant-input-affix-wrapper > input.ant-input {
+          background: transparent !important;
+          color: #000000 !important;
+          height: auto !important;
+          border: none !important;
         }
         .ant-input-password .ant-input-suffix {
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(0, 0, 0, 0.5);
         }
         .ant-input-password .anticon {
-          color: rgba(255, 255, 255, 0.5) !important;
+          color: rgba(0, 0, 0, 0.5) !important;
         }
         .ant-form-item-explain-error {
           color: #ff6b6b !important;
@@ -386,6 +402,7 @@ const Login: React.FC = () => {
 
         @media screen and (max-width: 768px) {
           .ant-input,
+          .ant-input-affix-wrapper,
           .ant-input-password .ant-input {
             height: 42px;
             font-size: 14px;
