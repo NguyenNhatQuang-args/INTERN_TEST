@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+## Setup môi trường
+# Tạo project React + TypeScript với Vite
+npm create vite@latest course-management -- --template react-ts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Di chuyển vào thư mục project
+cd course-management
 
-Currently, two official plugins are available:
+# Cài đặt dependencies mặc định
+npm install
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Cài đặt Ant Design (UI Library)
+npm install antd
 
-## React Compiler
+# Cài đặt Ant Design Icons
+npm install @ant-design/icons
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# Cài đặt React Router (Routing)
+npm install react-router-dom
 
-## Expanding the ESLint configuration
+# Chạy development server
+npm run dev
+## ROLLDOWN-VITE v7.2.5
+## Local:   http://localhost:5173/
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Git push
+git init
+git add .
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Nếu muốn đổi branch hiện tại thành main
+git branch -M main
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+git commit -m "Frist push"
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+git remote add origin https://github.com/NguyenNhatQuang-args/INTERN_TEST.git
+# Push lên GitHub nếu là lần đầu tiên
+git push -u origin main
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+# Còn sau khi update code
+# Xem code nào đã thay đổi
+git status 
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+git add .
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+git commit -m "Update code"
+
+git push
+
