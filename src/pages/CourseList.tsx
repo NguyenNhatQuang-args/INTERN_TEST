@@ -115,12 +115,15 @@ const CourseList: React.FC = () => {
       title: 'Level',
       dataIndex: 'level',
       key: 'level',
-      width: 120,
+      width: 200,
       render: (level: string) => {
         const colors: Record<string, string> = {
           Beginner: 'green',
           Intermediate: 'orange',
-          Advanced: 'red'
+          Advanced: 'red',
+          'Total Comprehension': 'gray',
+          Elementary: 'gray',
+          'Upper Intermediate': 'gray'
         };
         return <span style={{ color: colors[level] || 'gray' }}>{level}</span>;
       }
@@ -134,7 +137,7 @@ const CourseList: React.FC = () => {
     {
       title: 'Actions',
       key: 'actions',
-      width: 180,
+      width: 200,
       render: (_, record) => (
         <Space>
           <Button
@@ -202,11 +205,11 @@ const CourseList: React.FC = () => {
             style={{ width: 150 }}
             onChange={handleCategoryChange}
             options={[
-              { value: 'IELTS', label: 'IELTS' },
-                { value: 'TOEIC', label: 'TOEIC' },
-                { value: '4SKILLS', label: '4SKILLS' },
-                { value: 'VSTEP', label: 'VSTEP' },
-                { value: 'Listening, Reading', label: 'Listening, Reading' },
+              { value: 'SPEAKING', label: 'SPEAKING' },
+              { value: 'VOCABULARY', label: 'VOCABULARY' },
+              { value: 'GRAMMAR', label: 'GRAMMAR' },
+              { value: '4SKILLS', label: '4 Skills' },
+              { value: 'WRITING', label: 'WRITING' },
             ]}
           />
           <Select
@@ -218,6 +221,9 @@ const CourseList: React.FC = () => {
               { value: 'Beginner', label: 'Beginner' },
               { value: 'Intermediate', label: 'Intermediate' },
               { value: 'Advanced', label: 'Advanced' },
+              { value: 'Total Comprehension', label: 'Total Comprehension' },
+              { value: 'Elementary', label: 'Elementary' },
+              { value: 'Upper Intermediate', label: 'Upper Intermediate' },
             ]}
           />
           <Button type="primary" icon={<PlusOutlined />} onClick={handleCreate}>

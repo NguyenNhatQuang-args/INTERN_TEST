@@ -101,10 +101,11 @@ const CourseForm: React.FC = () => {
             <Select 
               placeholder="Select category"
               options={[
-                { value: 'IELTS', label: 'IELTS' },
-                { value: 'TOEIC', label: 'TOEIC' },
-                { value: 'VSTEP', label: 'VSTEP' },
+                { value: 'SPEAKING', label: 'SPEAKING' },
+                { value: 'VOCABULARY', label: 'VOCABULARY' },
+                { value: 'GRAMMAR', label: 'GRAMMAR' },
                 { value: '4SKILLS', label: '4 Skills' },
+                { value: 'WRITING', label: 'WRITING' },
               ]}
             />
           </Form.Item>
@@ -120,6 +121,9 @@ const CourseForm: React.FC = () => {
                 { value: 'Beginner', label: 'Beginner' },
                 { value: 'Intermediate', label: 'Intermediate' },
                 { value: 'Advanced', label: 'Advanced' },
+                { value: 'Total Comprehension', label: 'Total Comprehension' },
+                { value: 'Elementary', label: 'Elementary' },
+                { value: 'Upper Intermediate', label: 'Upper Intermediate' },
               ]}
             />
           </Form.Item>
