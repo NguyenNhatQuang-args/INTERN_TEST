@@ -1,6 +1,7 @@
 import type { Course, CourseFilter } from '../types';
+import { API_CONFIG } from '../constants';
 
-const API_BASE_URL = import.meta.env.VITE_COURSE_API_URL;
+const API_BASE_URL = API_CONFIG.COURSE_API_URL;
 
 // READ - Get all courses with pagination & filter
 export const getCourses = async (

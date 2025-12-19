@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import type { User } from '../types';
+import { API_CONFIG, STORAGE_KEYS } from '../constants';
 
 interface AuthContextType {
   user: User | null;
@@ -18,8 +19,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   useEffect(() => {
     // Kiểm tra token trong localStorage khi app load
-    const token = localStorage.getItem('auth_token');
-    const savedUser = localStorage.getItem('user');
+    const token = localStorage.getItem(STORAGE_KEYS.AUTH_TOKEN);
+    const savedUser = localStorage.getItem(STORAGE_KEYS.USER);
     if (token && savedUser) {
       setUser(JSON.parse(savedUser));
     }
@@ -27,7 +28,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = async (email: string, password: string) => {
-    const authApiUrl = import.meta.env.VITE_AUTH_API_URL;
+    const authApiUrl = API_CONFIG.AUTH_API_URL;
     
     // Bước 1: Tìm user bằng email từ API users
     const usersResponse = await fetch(`${authApiUrl}/users/filter?key=email&value=${email}`);
@@ -58,14 +59,14 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const data = await response.json();
     
     // Lưu token và user info
-    localStorage.setItem('auth_token', data.accessToken);
-    localStorage.setItem('user', JSON.stringify(data));
+    localStorage.setItem(STORAGE_KEYS.AUTH_TOKEN, data.accessToken);
+    localStorage.setItem(STORAGE_KEYS.USER, JSON.stringify(data));
     setUser(data);
   };
 
   const logout = () => {
-    localStorage.removeItem('auth_token');
-    localStorage.removeItem('user');
+    localStorage.removeItem(STORAGE_KEYS.AUTH_TOKEN);
+    localStorage.removeItem(STORAGE_KEYS.USER);
     setUser(null);
   };
 

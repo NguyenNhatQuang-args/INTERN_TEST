@@ -8,6 +8,15 @@ import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import { useAuth } from '../contexts/AuthContext';
 import { getCourses, deleteCourse } from '../services/courseService';
 import type { Course, CourseFilter } from '../types';
+import { 
+  COURSE_CATEGORIES, 
+  COURSE_LEVELS, 
+  LEVEL_COLORS, 
+  PAGINATION, 
+  DEFAULTS, 
+  ROUTES, 
+  MESSAGES 
+} from '../constants';
 
 const { Search } = Input;
 
@@ -15,8 +24,8 @@ const CourseList: React.FC = () => {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState(false);
   const [total, setTotal] = useState(0);
-  const [page, setPage] = useState(1);
-  const [pageSize] = useState(10); // 10 items per page
+  const [page, setPage] = useState(PAGINATION.DEFAULT_PAGE);
+  const [pageSize] = useState(PAGINATION.DEFAULT_PAGE_SIZE);
   const [filters, setFilters] = useState<CourseFilter>({});
   
   const { logout, user } = useAuth();
@@ -30,7 +39,7 @@ const CourseList: React.FC = () => {
       setCourses(result.data);
       setTotal(result.total);
     } catch (error) {
-      message.error('Failed to fetch courses');
+      message.error(MESSAGES.ERROR.FETCH_COURSES);
     } finally {
       setLoading(false);
     }
@@ -42,30 +51,30 @@ const CourseList: React.FC = () => {
 
   // Handle search by title
   const handleSearch = (value: string) => {
-    setPage(1);
+    setPage(PAGINATION.DEFAULT_PAGE);
     setFilters(prev => ({ ...prev, title: value }));
   };
 
   // Handle filter by category
   const handleCategoryChange = (value: string | undefined) => {
-    setPage(1);
+    setPage(PAGINATION.DEFAULT_PAGE);
     setFilters(prev => ({ ...prev, category: value }));
   };
 
   // Handle filter by level
   const handleLevelChange = (value: string | undefined) => {
-    setPage(1);
+    setPage(PAGINATION.DEFAULT_PAGE);
     setFilters(prev => ({ ...prev, level: value }));
   };
 
   // Handle pagination change
   const handleTableChange = (pagination: TablePaginationConfig) => {
-    setPage(pagination.current || 1);
+    setPage(pagination.current || PAGINATION.DEFAULT_PAGE);
   };
 
   // Navigate to Create page
   const handleCreate = () => {
-    navigate('/courses/add');
+    navigate(ROUTES.COURSE_ADD);
   };
 
   // Navigate to Edit page
@@ -77,17 +86,17 @@ const CourseList: React.FC = () => {
   const handleDelete = async (id: number | string) => {
     try {
       await deleteCourse(id);
-      message.success('Course deleted successfully');
+      message.success(MESSAGES.SUCCESS.COURSE_DELETED);
       fetchCourses(); // Reload table
     } catch (error) {
-      message.error('Failed to delete course');
+      message.error(MESSAGES.ERROR.DELETE_COURSE);
     }
   };
 
   // Handle Logout
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate(ROUTES.LOGIN);
   };
 
   // Table columns definition
@@ -117,15 +126,7 @@ const CourseList: React.FC = () => {
       key: 'level',
       width: 200,
       render: (level: string) => {
-        const colors: Record<string, string> = {
-          Beginner: 'green',
-          Intermediate: 'orange',
-          Advanced: 'red',
-          'Total Comprehension': 'gray',
-          Elementary: 'gray',
-          'Upper Intermediate': 'gray'
-        };
-        return <span style={{ color: colors[level] || 'gray' }}>{level}</span>;
+        return <span style={{ color: LEVEL_COLORS[level] || 'gray' }}>{level}</span>;
       }
     },
     {
@@ -175,7 +176,7 @@ const CourseList: React.FC = () => {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <img 
-              src="https://jaxtina.com/wp-content/themes/jax2024/img/logo.svg" 
+              src={DEFAULTS.LOGO_URL} 
               alt="Logo" 
               style={{ height: 40 }} 
             />
@@ -204,27 +205,14 @@ const CourseList: React.FC = () => {
             allowClear
             style={{ width: 150 }}
             onChange={handleCategoryChange}
-            options={[
-              { value: 'SPEAKING', label: 'SPEAKING' },
-              { value: 'VOCABULARY', label: 'VOCABULARY' },
-              { value: 'GRAMMAR', label: 'GRAMMAR' },
-              { value: '4SKILLS', label: '4 Skills' },
-              { value: 'WRITING', label: 'WRITING' },
-            ]}
+            options={[...COURSE_CATEGORIES]}
           />
           <Select
             placeholder="Select Level"
             allowClear
             style={{ width: 150 }}
             onChange={handleLevelChange}
-            options={[
-              { value: 'Beginner', label: 'Beginner' },
-              { value: 'Intermediate', label: 'Intermediate' },
-              { value: 'Advanced', label: 'Advanced' },
-              { value: 'Total Comprehension', label: 'Total Comprehension' },
-              { value: 'Elementary', label: 'Elementary' },
-              { value: 'Upper Intermediate', label: 'Upper Intermediate' },
-            ]}
+            options={[...COURSE_LEVELS]}
           />
           <Button type="primary" icon={<PlusOutlined />} onClick={handleCreate}>
             Add Course

@@ -4,6 +4,7 @@ import { Form, Input, Select, Button, Card, message, Spin, Space } from 'antd';
 import { ArrowLeftOutlined } from '@ant-design/icons';
 import { getCourseById, createCourse, updateCourse } from '../services/courseService';
 import type { Course } from '../types';
+import { COURSE_CATEGORIES, COURSE_LEVELS, DEFAULTS, ROUTES, MESSAGES } from '../constants';
 
 const { TextArea } = Input;
 
@@ -29,11 +30,11 @@ const CourseForm: React.FC = () => {
       if (course) {
         form.setFieldsValue(course);
       } else {
-        message.error('Course not found');
-        navigate('/courses');
+        message.error(MESSAGES.ERROR.COURSE_NOT_FOUND);
+        navigate(ROUTES.COURSES);
       }
     } catch (error) {
-      message.error('Failed to load course');
+      message.error(MESSAGES.ERROR.FETCH_COURSE);
     } finally {
       setLoading(false);
     }
@@ -45,15 +46,15 @@ const CourseForm: React.FC = () => {
       if (isEditMode) {
         // UPDATE
         await updateCourse({ ...values, id: Number(id) });
-        message.success('Course updated successfully');
+        message.success(MESSAGES.SUCCESS.COURSE_UPDATED);
       } else {
         // CREATE
         await createCourse(values);
-        message.success('Course created successfully');
+        message.success(MESSAGES.SUCCESS.COURSE_CREATED);
       }
-      navigate('/courses');
+      navigate(ROUTES.COURSES);
     } catch (error) {
-      message.error(`Failed to ${isEditMode ? 'update' : 'create'} course`);
+      message.error(isEditMode ? MESSAGES.ERROR.UPDATE_COURSE : MESSAGES.ERROR.CREATE_COURSE);
     } finally {
       setSubmitting(false);
     }
@@ -72,7 +73,7 @@ const CourseForm: React.FC = () => {
       <Card 
         title={isEditMode ? 'Edit Course' : 'Create New Course'}
         extra={
-          <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/courses')}>
+          <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(ROUTES.COURSES)}>
             Back
           </Button>
         }
@@ -82,7 +83,7 @@ const CourseForm: React.FC = () => {
           layout="vertical"
           onFinish={onFinish}
           initialValues={{
-            thumbnail: 'https://dummyjson.com/image/150'
+            thumbnail: DEFAULTS.THUMBNAIL_URL
           }}
         >
           <Form.Item
@@ -100,13 +101,7 @@ const CourseForm: React.FC = () => {
           >
             <Select 
               placeholder="Select category"
-              options={[
-                { value: 'SPEAKING', label: 'SPEAKING' },
-                { value: 'VOCABULARY', label: 'VOCABULARY' },
-                { value: 'GRAMMAR', label: 'GRAMMAR' },
-                { value: '4SKILLS', label: '4 Skills' },
-                { value: 'WRITING', label: 'WRITING' },
-              ]}
+              options={[...COURSE_CATEGORIES]}
             />
           </Form.Item>
 
@@ -117,14 +112,7 @@ const CourseForm: React.FC = () => {
           >
             <Select 
               placeholder="Select level"
-              options={[
-                { value: 'Beginner', label: 'Beginner' },
-                { value: 'Intermediate', label: 'Intermediate' },
-                { value: 'Advanced', label: 'Advanced' },
-                { value: 'Total Comprehension', label: 'Total Comprehension' },
-                { value: 'Elementary', label: 'Elementary' },
-                { value: 'Upper Intermediate', label: 'Upper Intermediate' },
-              ]}
+              options={[...COURSE_LEVELS]}
             />
           </Form.Item>
 
@@ -144,7 +132,7 @@ const CourseForm: React.FC = () => {
 
           <Form.Item>
             <Space>
-              <Button onClick={() => navigate('/courses')}>
+              <Button onClick={() => navigate(ROUTES.COURSES)}>
                 Cancel
               </Button>
               <Button type="primary" htmlType="submit" loading={submitting}>
