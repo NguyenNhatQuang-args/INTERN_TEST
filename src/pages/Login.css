@@ -1,4 +1,4 @@
-/* ============ DESKTOP STYLES ============ */
+/*  DESKTOP STYLES  */
 .login-container {
   display: flex;
   justify-content: flex-end;
@@ -139,7 +139,7 @@
   box-shadow: 0 4px 15px rgba(180, 70, 50, 0.3);
 }
 
-/* ============ TABLET STYLES (768px - 1024px) ============ */
+/*  TABLET STYLES (768px - 1024px)  */
 @media screen and (max-width: 1024px) {
   .login-container {
     justify-content: center;
@@ -163,7 +163,7 @@
   }
 }
 
-/* ============ MOBILE STYLES (< 768px) ============ */
+/*  MOBILE STYLES (< 768px)  */
 @media screen and (max-width: 768px) {
   .login-container {
     justify-content: center;
@@ -216,7 +216,7 @@
   }
 }
 
-/* ============ SMALL MOBILE (< 480px) ============ */
+/*  SMALL MOBILE (< 480px)  */
 @media screen and (max-width: 480px) {
   .login-container {
     padding: 15px;
@@ -250,7 +250,7 @@
   }
 }
 
-/* ============ ANT DESIGN OVERRIDES ============ */
+/*  ANT DESIGN OVERRIDES  */
 .ant-input::placeholder,
 .ant-input-password input::placeholder {
   color: rgba(0, 0, 0, 0.4) !important;
