@@ -27,8 +27,10 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   }, []);
 
   const login = async (email: string, password: string) => {
+    const authApiUrl = import.meta.env.VITE_AUTH_API_URL;
+    
     // Bước 1: Tìm user bằng email từ API users
-    const usersResponse = await fetch(`https://dummyjson.com/users/filter?key=email&value=${email}`);
+    const usersResponse = await fetch(`${authApiUrl}/users/filter?key=email&value=${email}`);
     
     if (!usersResponse.ok) {
       throw new Error('Invalid credentials');
@@ -43,7 +45,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     const username = usersData.users[0].username;
 
     // Bước 2: Login bằng username tìm được
-    const response = await fetch('https://dummyjson.com/auth/login', {
+    const response = await fetch(`${authApiUrl}/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ username, password, expiresInMins: 30 })

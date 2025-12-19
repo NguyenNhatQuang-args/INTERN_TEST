@@ -1,6 +1,6 @@
 import type { Course, CourseFilter } from '../types';
 
-const API_BASE_URL = 'https://6938e7e24618a71d77d19513.mockapi.io/api/v1';
+const API_BASE_URL = import.meta.env.VITE_COURSE_API_URL;
 
 // READ - Get all courses with pagination & filter
 export const getCourses = async (
