@@ -1,0 +1,13 @@
+/* ============ COURSE FORM PAGE ============ */
+.course-form-container {
+  padding: 24px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Loading Spinner */
+.course-form-loading {
+  display: flex;
+  justify-content: center;
+  padding: 100px;
+}

@@ -1,0 +1,64 @@
+/* ============ COURSE LIST PAGE ============ */
+.course-list-container {
+  padding: 24px;
+}
+
+/* Header Card */
+.course-list-header {
+  margin-bottom: 16px;
+}
+
+.course-list-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.course-list-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.course-list-logo {
+  height: 40px;
+}
+
+.course-list-title {
+  margin: 0;
+}
+
+/* Filters Card */
+.course-list-filters {
+  margin-bottom: 16px;
+}
+
+.course-list-search {
+  width: 250px;
+}
+
+.course-list-select {
+  width: 150px;
+}
+
+/* Table Card */
+.course-list-table-card {
+  border-radius: 8px;
+}
+
+/* Level Colors */
+.level-beginner {
+  color: green;
+}
+
+.level-intermediate {
+  color: orange;
+}
+
+.level-advanced {
+  color: red;
+}
+
+.level-default {
+  color: gray;
+}

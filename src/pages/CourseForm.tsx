@@ -5,6 +5,7 @@ import { ArrowLeftOutlined } from '@ant-design/icons';
 import { getCourseById, createCourse, updateCourse } from '../services/courseService';
 import type { Course } from '../types';
 import { COURSE_CATEGORIES, COURSE_LEVELS, DEFAULTS, ROUTES, MESSAGES } from '../constants';
+import './CourseForm.css';
 
 const { TextArea } = Input;
 
@@ -62,14 +63,14 @@ const CourseForm: React.FC = () => {
 
   if (loading) {
     return (
-      <div style={{ display: 'flex', justifyContent: 'center', padding: 100 }}>
+      <div className="course-form-loading">
         <Spin size="large" />
       </div>
     );
   }
 
   return (
-    <div style={{ padding: 24, maxWidth: 600, margin: '0 auto' }}>
+    <div className="course-form-container">
       <Card 
         title={isEditMode ? 'Edit Course' : 'Create New Course'}
         extra={

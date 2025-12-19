@@ -17,6 +17,7 @@ import {
   ROUTES, 
   MESSAGES 
 } from '../constants';
+import './CourseList.css';
 
 const { Search } = Input;
 
@@ -126,7 +127,8 @@ const CourseList: React.FC = () => {
       key: 'level',
       width: 200,
       render: (level: string) => {
-        return <span style={{ color: LEVEL_COLORS[level] || 'gray' }}>{level}</span>;
+        const colorClass = `level-${level.toLowerCase().replace(/\s+/g, '-')}`;
+        return <span className={colorClass} style={{ color: LEVEL_COLORS[level] || 'gray' }}>{level}</span>;
       }
     },
     {
@@ -170,17 +172,17 @@ const CourseList: React.FC = () => {
   ];
 
   return (
-    <div style={{ padding: 24 }}>
+    <div className="course-list-container">
       {/* Header */}
-      <Card style={{ marginBottom: 16 }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+      <Card className="course-list-header">
+        <div className="course-list-header-content">
+          <div className="course-list-brand">
             <img 
               src={DEFAULTS.LOGO_URL} 
               alt="Logo" 
-              style={{ height: 40 }} 
+              className="course-list-logo" 
             />
-            <h1 style={{ margin: 0 }}>Course Management</h1>
+            <h1 className="course-list-title">Course Management</h1>
           </div>
           <Space>
             <span>Welcome, {user?.firstName || 'User'}!</span>
@@ -192,25 +194,25 @@ const CourseList: React.FC = () => {
       </Card>
 
       {/* Filters */}
-      <Card style={{ marginBottom: 16 }}>
+      <Card className="course-list-filters">
         <Space wrap>
           <Search
             placeholder="Search by title"
             allowClear
             onSearch={handleSearch}
-            style={{ width: 250 }}
+            className="course-list-search"
           />
           <Select
             placeholder="Select Category"
             allowClear
-            style={{ width: 150 }}
+            className="course-list-select"
             onChange={handleCategoryChange}
             options={[...COURSE_CATEGORIES]}
           />
           <Select
             placeholder="Select Level"
             allowClear
-            style={{ width: 150 }}
+            className="course-list-select"
             onChange={handleLevelChange}
             options={[...COURSE_LEVELS]}
           />
