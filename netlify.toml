@@ -2,6 +2,9 @@
   publish = "dist"
   command = "npm run build"
 
+[build.environment]
+  SECRETS_SCAN_OMIT_KEYS = "VITE_COURSE_API_URL,VITE_AUTH_API_URL"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
