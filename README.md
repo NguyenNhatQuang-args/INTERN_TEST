@@ -1,3 +1,10 @@
+# Đã chỉnh sửa các lỗi liên quan ERORR 404 NOT_FOUND cho Netlify sử dụng thêm file .toml để kết nối vào đường dẫn link html dựa trên hướng dẫn của Netlify về lỗi này trên React
+# Thay đổi 1 số về constants các giá trị được khai báo chung
+# Thêm vào CSS và không inline
+# Thêm vào file .env để tăng tính bảo mật và không push các base URL hoặc key lên github
+# Tìm hiểu thêm về cách hoạt động của JWTs, Access và Refresh Token
+
+
 ## Setup môi trường
 # Tạo project React + TypeScript với Vite
 npm create vite@latest course-management -- --template react-ts
@@ -47,4 +54,3 @@ git push
 
 
 
-# Đã thay đổi Category và Course
