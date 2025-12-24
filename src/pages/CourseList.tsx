@@ -127,8 +127,9 @@ const CourseList: React.FC = () => {
       key: 'level',
       width: 200,
       render: (level: string) => {
-        const colorClass = `level-${level.toLowerCase().replace(/\s+/g, '-')}`;
-        return <span className={colorClass} style={{ color: LEVEL_COLORS[level] || 'gray' }}>{level}</span>;
+        const levelKey = level.toLowerCase().replace(/\s+/g, '-');
+        const colorClass = LEVEL_COLORS[level] ? `level-${levelKey}` : 'level-default';
+        return <span className={colorClass}>{level}</span>;
       }
     },
     {

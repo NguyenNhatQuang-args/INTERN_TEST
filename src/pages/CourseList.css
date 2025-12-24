@@ -59,6 +59,18 @@
   color: red;
 }
 
+.level-total-comprehension {
+  color: gray;
+}
+
+.level-elementary {
+  color: gray;
+}
+
+.level-upper-intermediate {
+  color: gray;
+}
+
 .level-default {
   color: gray;
 }
