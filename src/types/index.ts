@@ -1,4 +1,6 @@
-export interface User {
+// User interface
+export interface User 
+{
   id: number;
   username: string;
   email: string;
@@ -8,7 +10,17 @@ export interface User {
   refreshToken: string;
 }
 
-export interface Course {
+// JWT Payload interface 
+export interface JwtPayload 
+{
+  exp: number;  // Expiry timestamp 
+  iat: number;  // Issued at timestamp 
+  id?: number;  // User ID 
+}
+
+// Course interface
+export interface Course 
+{
   id: number | string;
   title: string;
   category: string;
@@ -17,7 +29,9 @@ export interface Course {
   thumbnail: string;
 }
 
-export interface CourseFilter {
+// Course filter interface
+export interface CourseFilter 
+{
   title?: string;
   category?: string;
   level?: string;

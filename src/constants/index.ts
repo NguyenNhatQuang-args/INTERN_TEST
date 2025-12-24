@@ -4,7 +4,27 @@ export const API_CONFIG = {
   AUTH_API_URL: import.meta.env.VITE_AUTH_API_URL,
 } as const;
 
-//  Storage Keys 
+// Cookie Keys
+export const COOKIE_KEYS = {
+  ACCESS_TOKEN: 'access_token',
+  REFRESH_TOKEN: 'refresh_token',
+  USER: 'user_data',
+} as const;
+
+// Cookie Options
+export const COOKIE_OPTIONS = {
+  secure: import.meta.env.PROD, // Chỉ secure trên production (HTTPS)
+  sameSite: 'strict' as const,  // Chống CSRF
+  expires: 7,                    // 7 ngày cho refresh token
+} as const;
+
+// Token Expiry (in days)
+export const TOKEN_EXPIRY = {
+  ACCESS_TOKEN: 1 / 48,  // 30 phút
+  REFRESH_TOKEN: 7,       // 7 ngày
+} as const;
+
+//  Storage Keys (deprecated - use COOKIE_KEYS instead)
 export const STORAGE_KEYS = {
   AUTH_TOKEN: 'auth_token',
   USER: 'user',
