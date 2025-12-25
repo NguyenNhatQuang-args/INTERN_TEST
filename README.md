@@ -5,7 +5,7 @@
 # Thêm vào JwtPayload
 # Cài đặt và sử dụng jwt-decode và js-cookie
     npm install jwt-decode js-cookie  // Thư viện chính để decode JWT token ở Client
-    npm install
+    npm install -D @types/js-cookie     // Dùng cho dev để phát hiện lỗi sớm và gợi ý
 
 
  20/12/2025
